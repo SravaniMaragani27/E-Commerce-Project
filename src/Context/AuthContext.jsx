@@ -1,4 +1,4 @@
-import { createContext,useState } from "react";
+import { createContext,useContext,useState } from "react";
 
 export const AuthContext = createContext(null);
 
@@ -54,19 +54,21 @@ const newUser = {email,password};
 function login(email,password){
 const users = JSON.parse(localStorage.getItem("users") || "[]");
 
-const user = users.find((u)=> u.email === email && u.password === password);
+const foundUser = users.find((u)=> u.email === email && u.password === password);
 
 
-if(!user){
+if(!foundUser){
     return{success:false, error:"Invalid email or password."};
 }
- 
-localStorage.setItem("curentUserEmail",email);
-return {success:true, message:"User Loged in successfully."}
-console.log({success:true, message:"User Loged in successfully."});
+ // Save logged-in user
+localStorage.setItem("currentUserEmail",email);
+
+// Update React state
  setUser({ email });
 
-return { success: true };
+
+return {success:true, message:"User Loged in successfully."}
+console.log({success:true, message:"User Loged in successfully."});
 
 }
 
@@ -76,4 +78,11 @@ setUser(null);
 }
 
 return (<AuthContext.Provider value={{signup,user,login,logout}}>{children}</AuthContext.Provider>);
+}
+
+// custome hook for use the authcontext 
+
+export function useAuth(){
+    const context = useContext(AuthContext);
+    return context;
 }
