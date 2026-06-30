@@ -12,7 +12,7 @@ const [cartItems,setCartItems] = useState(() => {
   });//{id:2,quantity:7}
 
 
- // ✅ Save to localStorage whenever cart changes
+ // ✅ Save to localStorage whenever cart hanges
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);

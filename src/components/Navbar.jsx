@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useAuth} from "../Context/AuthContext";
 
 function Navbar() {
-  // const { user, logout } = useContext(AuthContext);
 
   // use the custome hook of useAuth to get the data of AuthContext data 
 
