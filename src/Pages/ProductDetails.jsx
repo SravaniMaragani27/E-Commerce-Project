@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getProductById } from '../data/products';
 // import products from '../data/products';
+import { useCart } from '../Context/CartContext'
+
 
 function ProductDetails() {
   const {id} = useParams();
@@ -9,19 +11,10 @@ function ProductDetails() {
 
   const navigate = useNavigate();
 
- 
-  // const getProductsById = (id) =>{
-  //   const fuondProduct = products.find((item)=>item.id === Number(id));
-  //   return foundProduct;
-     
-  //   // or get single products
+  const {cartItems,addToCart}  = useCart()
+  
 
-  //   // const getproducts = products;
-  //   // const singleProduct = getproducts.find((item) => item.id === Number(id));
-  //   // return singleProduct;
-  // }
-
-  useEffect(()=>{
+   useEffect(()=>{
     const foundProduct = getProductById(id);
     console.log(foundProduct);
 
@@ -39,6 +32,12 @@ function ProductDetails() {
   }
 
 
+  const productInCart = cartItems.find((item)=>item.id === product?.id);
+  
+  const productQuantityLable = productInCart ? `(${productInCart.quantity})`:" ";
+  
+
+
   return (
     <div className='page'>
       <div className="container">
@@ -50,7 +49,7 @@ function ProductDetails() {
             <h1 className='product-detail-name'>{product.name}</h1>
             <p className='product-detail-price'>${product.price}</p>
             <p className='product-detail-description'>{product.description}</p>
-            <button className='btn btn-primary'>Add Product</button>
+            <button className='btn btn-primary' onClick={()=>addToCart(product.id)}>Add Product{productQuantityLable}</button>
           </div>
         </div>
       </div>

@@ -4,28 +4,8 @@ export const AuthContext = createContext(null);
 
 export  default function AuthContextProvider({children}) {
 
-// const [user,setUser] = useState(localStorage.getItem("currentUserEmail") || null);
 
 const [user,setUser] = useState(localStorage.getItem("currentUserEmail") ? {email:localStorage.getItem("currentUserEmail")} : null);
-
-
-
-//   function signup(email, password) {
-//     const users = JSON.parse(localStorage.getItem("users") || "[]");
-
-//     if (users.find((u) => u.email === email)) {
-//       return { success: false, error: "Email already exists" };
-//     }
-//     const newUser = { email, password };
-//     users.push(newUser);
-//     localStorage.setItem("users", JSON.stringify(users));
-//     localStorage.setItem("currentUserEmail", email);
-
-//     setUser({ email });
-
-//     return { success: true };
-//   }
-
 
 
 
@@ -80,7 +60,7 @@ setUser(null);
 return (<AuthContext.Provider value={{signup,user,login,logout}}>{children}</AuthContext.Provider>);
 }
 
-// custome hook for use the authcontext 
+// custome hook for use thecontext 
 
 export function useAuth(){
     const context = useContext(AuthContext);

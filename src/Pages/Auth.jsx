@@ -7,7 +7,6 @@ function Auth() {
   const [mode, setMode] = useState('signup');
   const [error,setError] = useState(null);
 
-  // const {signup,user,logout,login} = useContext(AuthContext);
   // const {signup,login} = useContext(AuthContext);
 
   // use the custome hook of useAuth to get the AuthContext data
@@ -47,7 +46,7 @@ function Auth() {
         <div className="auth-container">
           {/* {user && <p>User Logged In: {user.email}</p>}
           <button onClick={()=>logout()}>Logout</button> */}
-        <h1 className="page-title">{mode === 'signup'?"Sign Up":"Login"}</h1>
+           <h1 className="page-title">{mode === 'signup'?"Sign Up":"Login"}</h1>
            <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
             {error && <p className="error-message">{error}</p>}
             <div className="form-group">
@@ -82,7 +81,7 @@ function Auth() {
                 </span>
               </p>
             )}
-{/* 
+          {/* 
           {mode === 'signup'? <p>Already have an account? <span className="auth-link" onClick={() => setMode('login')}> Login</span></p> 
           :<p>Don't have an account? <span className="auth-link" onClick={() => setMode('signup')}> Sign Up</span></p>} */}
           

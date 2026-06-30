@@ -6,12 +6,14 @@ import Navbar from './components/Navbar';
 import'./App.css';
 import AuthContextProvider from './Context/AuthContext';
 import ProductDetails from './Pages/ProductDetails';
+import CartContextProvider from './Context/CartContext';
 
 
 function App() {
 
   return (
     <AuthContextProvider>
+      <CartContextProvider>
       <div className="App">
       {/* <h1>Vite + React</h1> */}
       <Navbar/>
@@ -22,6 +24,7 @@ function App() {
         <Route path="/products/:id" element={<ProductDetails/>} />
       </Routes>
     </div>
+   </CartContextProvider>
     </AuthContextProvider>
     
   )
